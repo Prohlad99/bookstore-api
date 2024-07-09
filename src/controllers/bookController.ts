@@ -4,6 +4,7 @@ import * as authorModel from '../models/authorModel';
 
 import { validationResult } from 'express-validator';
 
+//Get All Books
 export async function getAllBooks(req: Request, res: Response): Promise<void> {
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
@@ -27,6 +28,7 @@ export async function getAllBooks(req: Request, res: Response): Promise<void> {
     }
 }
 
+//Get Book By ID
 export async function getBookById(req: Request, res: Response): Promise<void> {
     try {
         const book = await bookModel.getBookById(Number(req.params.id));
@@ -40,6 +42,7 @@ export async function getBookById(req: Request, res: Response): Promise<void> {
     }
 }
 
+//Create Book
 export async function createBook(req: Request, res: Response): Promise<void> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -64,6 +67,7 @@ export async function createBook(req: Request, res: Response): Promise<void> {
     }
 }
 
+//Update Book By ID
 export async function updateBook(req: Request, res: Response): Promise<void> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -84,6 +88,7 @@ export async function updateBook(req: Request, res: Response): Promise<void> {
     }
 }
 
+//Delete Book By ID
 export async function deleteBook(req: Request, res: Response): Promise<void> {
     try {
         const deleted = await bookModel.deleteBook(Number(req.params.id));
@@ -97,6 +102,7 @@ export async function deleteBook(req: Request, res: Response): Promise<void> {
     }
 }
 
+//Get Books By Author
 export async function getBooksByAuthorId(req: Request, res: Response): Promise<void> {
     try {
         const books = await bookModel.getBooksByAuthorId(Number(req.params.id));

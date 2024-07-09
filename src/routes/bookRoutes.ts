@@ -4,6 +4,7 @@ import { validateBook } from '../validation/bookValidation';
 import { authenticateJWT } from '../middleware/authMiddleware';
 import { validationResultMiddleware } from '../middleware/validationMiddleware';
 
+//Book Routes
 const router = Router();
 
 router.post('/', authenticateJWT, validateBook, validationResultMiddleware, createBook);

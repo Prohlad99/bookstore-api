@@ -7,6 +7,7 @@ export interface Author {
   birthdate: string;
 }
 
+//Get All Authors
 const getAllAuthors = async (page: number, limit: number, search?: string): Promise<Author[]> => {
   const offset = (page - 1) * limit;
   let query = db('authors').select('*').limit(limit).offset(offset);
@@ -18,23 +19,29 @@ const getAllAuthors = async (page: number, limit: number, search?: string): Prom
   return query;
 };
 
+//Get Author By ID
 const getAuthorById = async (id: number): Promise<Author> => {
   return db('authors').where({ id }).first();
 };
 
+//Create Author
 const createAuthor = async (author: Author): Promise<number> => {
   const [id] = await db('authors').insert(author);
-  return id; // Return the ID of the newly created author
+  return id; 
 };
-
+ 
+//Update Author By ID
 const updateAuthor = async (id: number, author: Author): Promise<number> => {
   return db('authors').where({ id }).update(author);
 };
 
+//Delete Author By ID
 const deleteAuthor = async (id: number): Promise<number> => {
   return db('authors').where({ id }).del();
 };
 
+// Retrieves the total number of authors optionally filtered by name.
+// @param search Optional search string to filter authors by name.
 const getAuthorsCount = async (search?: string): Promise<number> => {
   let query = db('authors').count('id as count').first();
 

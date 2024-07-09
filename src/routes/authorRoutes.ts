@@ -4,7 +4,7 @@ import { validateAuthor } from '../validation/authorValidation';
 import { authenticateJWT } from '../middleware/authMiddleware';
 import { validationResultMiddleware } from '../middleware/validationMiddleware';
 
-
+// Author Routes
 const router = Router();
 
 router.post('/', authenticateJWT, validateAuthor, validationResultMiddleware, createAuthor);

@@ -6,10 +6,12 @@ export interface User {
   password: string;
 }
 
+//Login User
 export const getUserByEmail = async (email: string): Promise<User | undefined> => {
   return db('users').where({ email }).first();
 };
 
+//Register User
 export const createUser = async (user: User): Promise<number[]> => {
   return db('users').insert(user);
 };

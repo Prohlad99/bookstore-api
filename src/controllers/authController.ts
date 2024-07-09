@@ -5,6 +5,7 @@ import * as userModel from '../models/userModel';
 
 const secretKey = process.env.JWT_SECRET || 'your-secret-key';
 
+//Register User
 export const register = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
@@ -27,6 +28,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+//Login User
 export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
